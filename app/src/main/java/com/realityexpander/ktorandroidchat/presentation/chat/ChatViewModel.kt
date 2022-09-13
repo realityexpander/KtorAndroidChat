@@ -34,16 +34,20 @@ class ChatViewModel @Inject constructor(
 
     fun connectToChat() {
         getAllMessages()
+
         savedStateHandle.get<String>("username")?.let { username ->
             viewModelScope.launch {
                 val result = chatSocketService.initSession(username)
+
                 when(result) {
                     is Resource.Success -> {
-                        chatSocketService.observeMessages()
+                        chatSocketService.observeMessages()  // setup the flow for observing messages
                             .onEach { message ->
-                                val newList = state.value.messages.toMutableList().apply {
-                                    add(0, message)
-                                }
+                                val newList =
+                                    state.value.messages.toMutableList().apply {
+                                        add(0, message)
+                                    }
+
                                 _state.value = state.value.copy(
                                     messages = newList
                                 )
@@ -70,6 +74,7 @@ class ChatViewModel @Inject constructor(
     fun getAllMessages() {
         viewModelScope.launch {
             _state.value = state.value.copy(isLoading = true)
+
             val result = messageService.getAllMessages()
             _state.value = state.value.copy(
                 messages = result,

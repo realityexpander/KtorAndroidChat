@@ -23,10 +23,12 @@ class ChatSocketServiceImpl(
             socket = client.webSocketSession {
                 url("${ChatSocketService.Endpoints.ChatSocket.url}?username=$username")
             }
+
             if(socket?.isActive == true) {
                 Resource.Success(Unit)
             } else
                 Resource.Error("Couldn't establish a connection.")
+
         } catch(e: Exception) {
             e.printStackTrace()
             Resource.Error(e.localizedMessage ?: "Unknown error")
@@ -41,7 +43,9 @@ class ChatSocketServiceImpl(
         }
     }
 
+    // Setup flow for incoming messages
     override fun observeMessages(): Flow<Message> {
+
         return try {
             socket
                 ?.incoming
@@ -52,8 +56,11 @@ class ChatSocketServiceImpl(
                 ?.map {
                     val json = (it as? Frame.Text)?.readText() ?: ""
                     val messageDto = Json.decodeFromString<MessageDto>(json)
+
+                    println("Message: ${messageDto.text}")
                     messageDto.toMessage()
-                } ?: flow {  }
+                }
+                ?: flow { /* return empty flow */ }
         } catch(e: Exception) {
             e.printStackTrace()
             flow {  }
