@@ -6,7 +6,7 @@ import io.ktor.client.*
 import io.ktor.client.request.*
 
 class MessageServiceImpl(
-    private val client: HttpClient
+    private val client: HttpClient  // Ktor client
 ): MessageService {
 
     override suspend fun getAllMessages(): List<Message> {

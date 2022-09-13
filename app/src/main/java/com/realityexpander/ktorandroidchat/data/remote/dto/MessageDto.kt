@@ -17,6 +17,7 @@ data class MessageDto(
         val formattedDate = DateFormat
             .getDateInstance(DateFormat.DEFAULT)
             .format(date)
+
         return Message(
             text = text,
             formattedTime = formattedDate,
