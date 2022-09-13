@@ -25,7 +25,8 @@ class ChatSocketServiceImpl(
             }
             if(socket?.isActive == true) {
                 Resource.Success(Unit)
-            } else Resource.Error("Couldn't establish a connection.")
+            } else
+                Resource.Error("Couldn't establish a connection.")
         } catch(e: Exception) {
             e.printStackTrace()
             Resource.Error(e.localizedMessage ?: "Unknown error")
@@ -42,9 +43,12 @@ class ChatSocketServiceImpl(
 
     override fun observeMessages(): Flow<Message> {
         return try {
-            socket?.incoming
+            socket
+                ?.incoming
                 ?.receiveAsFlow()
-                ?.filter { it is Frame.Text }
+                ?.filter {
+                    it is Frame.Text
+                }
                 ?.map {
                     val json = (it as? Frame.Text)?.readText() ?: ""
                     val messageDto = Json.decodeFromString<MessageDto>(json)

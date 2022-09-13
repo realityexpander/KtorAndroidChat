@@ -12,7 +12,9 @@ class MessageServiceImpl(
     override suspend fun getAllMessages(): List<Message> {
         return try {
             client.get<List<MessageDto>>(MessageService.Endpoints.GetAllMessages.url)
-                .map { it.toMessage() }
+                .map {
+                    it.toMessage()
+                }
         } catch (e: Exception) {
             emptyList()
         }

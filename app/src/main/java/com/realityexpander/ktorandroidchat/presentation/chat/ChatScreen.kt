@@ -40,6 +40,7 @@ fun ChatScreen(
             Toast.makeText(context, message, Toast.LENGTH_LONG).show()
         }
     }
+
     val lifecycleOwner = LocalLifecycleOwner.current
     DisposableEffect(key1 = lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
@@ -50,11 +51,14 @@ fun ChatScreen(
             }
         }
         lifecycleOwner.lifecycle.addObserver(observer)
+
         onDispose {
             lifecycleOwner.lifecycle.removeObserver(observer)
         }
     }
+
     val state = viewModel.state.value
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -69,6 +73,7 @@ fun ChatScreen(
             item {
                 Spacer(modifier = Modifier.height(32.dp))
             }
+
             items(state.messages) { message ->
                 val isOwnMessage = message.username == username
                 Box(
@@ -127,6 +132,8 @@ fun ChatScreen(
                 Spacer(modifier = Modifier.height(32.dp))
             }
         }
+
+        // Enter message
         Row(
             modifier = Modifier.fillMaxWidth()
         ) {
