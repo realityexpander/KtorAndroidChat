@@ -26,16 +26,25 @@ class MainActivity : ComponentActivity() {
                     UsernameScreen(onNavigate = navController::navigate)
                 }
                 composable(
-                    route = "chat_screen/{username}",
+                    route = "chat_screen/{username}/{id}",  // note: `id` is not used. Just for demo purposes.
                     arguments = listOf(
                         navArgument(name = "username") {
                             type = NavType.StringType
                             nullable = true
+                        },
+                        navArgument(name = "id") {
+                            type = NavType.IntType
+                            //nullable = true
                         }
                     )
-                ) {
-                    val username = it.arguments?.getString("username")
-                    ChatScreen(username = username)
+                ) { navBackStackEntry ->
+                    val username = navBackStackEntry.arguments?.getString("username")
+                    val id = navBackStackEntry.arguments?.getInt("id")
+
+                    // note: the navArguments are passed as a bundle to the viewModel via the SavedStateHandle.
+                    // We are also passing the same arguments to the ChatScreen composable (necessary?)
+
+                    ChatScreen(username = username, id = id)
                 }
             }
         }

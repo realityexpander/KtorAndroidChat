@@ -19,7 +19,7 @@ fun UsernameScreen(
 ) {
     LaunchedEffect(key1 = true) {
         viewModel.onJoinChat.collectLatest { username ->
-            onNavigate("chat_screen/$username")
+            onNavigate("chat_screen/$username/101")
         }
     }
 

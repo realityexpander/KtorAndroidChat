@@ -32,6 +32,7 @@ import kotlinx.coroutines.flow.collectLatest
 @Composable
 fun ChatScreen(
     username: String?,
+    id: Int?,
     viewModel: ChatViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
@@ -76,6 +77,7 @@ fun ChatScreen(
 
             items(state.messages) { message ->
                 val isOwnMessage = message.username == username
+
                 Box(
                     contentAlignment = if (isOwnMessage) {
                         Alignment.CenterEnd

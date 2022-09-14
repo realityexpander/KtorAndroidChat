@@ -20,7 +20,7 @@ import javax.inject.Inject
 class ChatViewModel @Inject constructor(
     private val messageService: MessageService,
     private val chatSocketService: ChatSocketService,
-    private val savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle  // automatically injected via hiltViewModel()
 ) : ViewModel() {
 
     private val _messageText = mutableStateOf("")
@@ -34,6 +34,9 @@ class ChatViewModel @Inject constructor(
 
     fun connectToChat() {
         getAllMessages()
+
+        // the `savedStateHandle` contains the arguments from the `navArguments`
+        println("Connecting to chat: id=${savedStateHandle.get<String>("id")}")
 
         savedStateHandle.get<String>("username")?.let { username ->
             viewModelScope.launch {
