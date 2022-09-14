@@ -12,6 +12,10 @@ import com.realityexpander.ktorandroidchat.presentation.chat.ChatScreen
 import com.realityexpander.ktorandroidchat.presentation.username.UsernameScreen
 import dagger.hilt.android.AndroidEntryPoint
 
+// From web console:
+// let ws1 = new WebSocket("ws://localhost:8082/chat-socket?username=phil")
+// ws1.send(JSON.stringify({type: "message", data: "Hello World"}))
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
