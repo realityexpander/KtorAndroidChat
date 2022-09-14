@@ -24,6 +24,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -65,6 +66,8 @@ fun ChatScreen(
             .fillMaxSize()
             .padding(16.dp)
     ) {
+        Text(text = "Chat: $username", fontWeight = FontWeight.Bold, fontSize = 24.sp)
+
         LazyColumn(
             modifier = Modifier
                 .weight(1f)
@@ -95,7 +98,10 @@ fun ChatScreen(
                                     if (isOwnMessage) {
                                         moveTo(size.width, size.height - cornerRadius)
                                         lineTo(size.width, size.height + triangleHeight)
-                                        lineTo(size.width - triangleWidth, size.height - cornerRadius)
+                                        lineTo(
+                                            size.width - triangleWidth,
+                                            size.height - cornerRadius
+                                        )
                                         close()
                                     } else {
                                         moveTo(0f, size.height - cornerRadius)

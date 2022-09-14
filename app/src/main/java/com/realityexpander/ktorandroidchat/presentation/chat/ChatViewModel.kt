@@ -20,7 +20,7 @@ import javax.inject.Inject
 class ChatViewModel @Inject constructor(
     private val messageService: MessageService,
     private val chatSocketService: ChatSocketService,
-    private val savedStateHandle: SavedStateHandle  // automatically injected via hiltViewModel()
+    private val savedStateHandle: SavedStateHandle  // automatically injected via hiltViewModel(), includes the navArgs
 ) : ViewModel() {
 
     private val _messageText = mutableStateOf("")
@@ -90,6 +90,9 @@ class ChatViewModel @Inject constructor(
         viewModelScope.launch {
             if(messageText.value.isNotBlank()) {
                 chatSocketService.sendMessage(messageText.value)
+
+                // Clear the message text
+                _messageText.value = ""
             }
         }
     }
