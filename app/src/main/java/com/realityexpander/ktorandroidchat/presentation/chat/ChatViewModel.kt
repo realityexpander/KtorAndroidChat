@@ -9,10 +9,7 @@ import com.realityexpander.ktorandroidchat.data.remote.ChatSocketService
 import com.realityexpander.ktorandroidchat.data.remote.MessageService
 import com.realityexpander.ktorandroidchat.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -36,7 +33,7 @@ class ChatViewModel @Inject constructor(
         getAllMessages()
 
         // the `savedStateHandle` contains the arguments from the `navArguments`
-        println("Connecting to chat: id=${savedStateHandle.get<String>("id")}")
+        println("Connecting to chat: id=${savedStateHandle.get<String>("id")}") // not used, for demo only.
 
         savedStateHandle.get<String>("username")?.let { username ->
             viewModelScope.launch {
@@ -44,17 +41,32 @@ class ChatViewModel @Inject constructor(
 
                 when(result) {
                     is Resource.Success -> {
-                        chatSocketService.observeMessages()  // setup the flow for observing messages
-                            .onEach { message ->
-                                val newList =
-                                    state.value.messages.toMutableList().apply {
-                                        add(0, message)
-                                    }
+//                        chatSocketService.observeMessages()  // setup the flow for observing messages
+//                            .onEach { message ->
+//                                val newList =
+//                                    state.value.messages.toMutableList().apply {
+//                                        add(0, message)
+//                                    }
+//
+//                                _state.value = state.value.copy(
+//                                    messages = newList
+//                                )
+//                            }.launchIn(viewModelScope)
 
-                                _state.value = state.value.copy(
-                                    messages = newList
-                                )
-                            }.launchIn(viewModelScope)
+                        // Same as above.  The `onEach` is a `collect` block.
+                        viewModelScope.launch {
+                            chatSocketService.observeMessages()  // setup the flow for observing messages
+                                .onEach { message ->
+                                    val newList =
+                                        state.value.messages.toMutableList().apply {
+                                            add(0, message)
+                                        }
+
+                                    _state.value = state.value.copy(
+                                        messages = newList
+                                    )
+                                }.collect()
+                        }
                     }
                     is Resource.Error -> {
                         _toastEvent.emit(result.message ?: "Unknown error")

@@ -20,6 +20,7 @@ class ChatSocketServiceImpl(
 
     override suspend fun initSession(username: String): Resource<Unit> {
         return try {
+            // open the socket session with the server for this user
             socket = client.webSocketSession {
                 url("${ChatSocketService.Endpoints.ChatSocket.url}?username=$username")
             }

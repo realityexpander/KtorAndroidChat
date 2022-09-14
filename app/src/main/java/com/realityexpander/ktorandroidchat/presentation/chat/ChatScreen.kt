@@ -86,16 +86,18 @@ fun ChatScreen(
                 Box(
                     contentAlignment = if (isOwnMessage) {
                         Alignment.CenterEnd
-                    } else Alignment.CenterStart,
+                    } else
+                        Alignment.CenterStart,
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Column(
                         modifier = Modifier
-                            .width(200.dp)
+                            .width(300.dp)
                             .drawBehind {
-                                val cornerRadius = 10.dp.toPx()
-                                val triangleHeight = 20.dp.toPx()
-                                val triangleWidth = 25.dp.toPx()
+                                val cornerRadius = 15.dp.toPx()
+                                val triangleHeight = 15.dp.toPx()
+                                val triangleWidth = 45.dp.toPx()
+
                                 val trianglePath = Path().apply {
                                     if (isOwnMessage) {
                                         moveTo(size.width, size.height - cornerRadius)
@@ -114,14 +116,14 @@ fun ChatScreen(
                                 }
                                 drawPath(
                                     path = trianglePath,
-                                    color = if (isOwnMessage) Color.Green else Color.DarkGray
+                                    color = if (isOwnMessage) Color.Blue else Color.DarkGray
                                 )
                             }
                             .background(
-                                color = if (isOwnMessage) Color.Green else Color.DarkGray,
+                                color = if (isOwnMessage) Color.Blue else Color.DarkGray,
                                 shape = RoundedCornerShape(10.dp)
                             )
-                            .padding(8.dp)
+                            .padding(start = 6.dp, end = 6.dp, top = 4.dp, bottom = 4.dp)
                     ) {
                         Text(
                             text = message.username,
@@ -139,7 +141,7 @@ fun ChatScreen(
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(12.dp))
             }
         }
 
@@ -158,6 +160,7 @@ fun ChatScreen(
             IconButton(onClick = viewModel::sendMessage) {
                 Icon(
                     imageVector = Icons.Default.Send,
+                    modifier = Modifier.size(40.dp),
                     contentDescription = "Send"
                 )
             }
