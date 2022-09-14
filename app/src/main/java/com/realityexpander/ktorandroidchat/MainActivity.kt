@@ -16,6 +16,11 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (savedInstanceState!=null) {
+            println("savedInstanceState[\"username\"] = ${savedInstanceState["username"]}")
+        }
+
         setContent {
             val navController = rememberNavController()
             NavHost(
@@ -47,6 +52,22 @@ class MainActivity : ComponentActivity() {
                     ChatScreen(username = username, id = id)
                 }
             }
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        println("onSaveInstanceState")
+
+        outState.putString("username", "username")
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        println("onRestoreInstanceState")
+
+        savedInstanceState.keySet().forEach {
+            println("key: $it")
         }
     }
 }
