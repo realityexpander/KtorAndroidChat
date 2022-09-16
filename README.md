@@ -3,7 +3,11 @@ Android app for use with Ktor Chat backend
 
 Android app for the this Ktor backend server: https://github.com/realityexpander/Server.ktor-chat
 
-[<img src="https://user-images.githubusercontent.com/5157474/180717307-f9d8f72e-a289-4196-b4bc-520011a13f96.png" width="200"/>](https://user-images.githubusercontent.com/5157474/180717307-f9d8f72e-a289-4196-b4bc-520011a13f96.png)
+[<img src="https://user-images.githubusercontent.com/5157474/190579966-c9aa572b-46e4-4db9-a6fe-9ab49b06f269.png" width="400"/>](https://user-images.githubusercontent.com/5157474/190579966-c9aa572b-46e4-4db9-a6fe-9ab49b06f269.png)
+[<img src="https://user-images.githubusercontent.com/5157474/190580415-a05d49e5-e55b-4a05-a029-b60e04cf1394.png" width="400"/>](https://user-images.githubusercontent.com/5157474/190580415-a05d49e5-e55b-4a05-a029-b60e04cf1394.png)
+
+
+
 
 App features:
 - Chat with other users in real-time
