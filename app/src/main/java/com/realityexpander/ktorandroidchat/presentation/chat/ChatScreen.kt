@@ -2,6 +2,7 @@ package com.realityexpander.ktorandroidchat.presentation.chat
 
 import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -25,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
+import com.realityexpander.ktorandroidchat.ui.theme.KtorAndroidChatTheme
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
@@ -165,6 +167,7 @@ fun ChatScreen(
                 Icon(
                     imageVector = Icons.Default.Send,
                     modifier = Modifier.size(40.dp),
+                    tint = if (isSystemInDarkTheme()) Color.White else Color.Black,
                     contentDescription = "Send"
                 )
             }
