@@ -20,8 +20,12 @@ App features:
 * Kotlin 
 * MVVM
 * Coroutines
+* Compose for UI Layer
+* MongoDB Database for persistence
+* KotlinX Serialization
+* Navigation Component
 * Custom REST API built with Ktor
-* Websockets using Ktor Client for real-time communication
+* Custom Websockets using Ktor Client for real-time communication
 * Responds to custom HTTP & HTTPS endpoints with JSON
 * Allows users to reconnect if accidentally disconnected
 * Efficiently handles network errors
