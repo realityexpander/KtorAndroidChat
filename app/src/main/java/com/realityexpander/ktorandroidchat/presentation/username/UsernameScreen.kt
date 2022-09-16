@@ -1,9 +1,7 @@
 package com.realityexpander.ktorandroidchat.presentation.username
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -40,7 +38,11 @@ fun UsernameScreen(
                 placeholder = {
                     Text(text = "Enter a username...")
                 },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                colors = TextFieldDefaults.textFieldColors(
+                    textColor = MaterialTheme.colors.onBackground,
+                    backgroundColor = MaterialTheme.colors.background,
+                ),
             )
             Spacer(modifier = Modifier.height(8.dp))
             Button(onClick = viewModel::onJoinClick) {

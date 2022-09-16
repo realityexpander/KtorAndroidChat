@@ -155,7 +155,11 @@ fun ChatScreen(
                 placeholder = {
                     Text(text = "Enter a message")
                 },
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
+                colors = TextFieldDefaults.textFieldColors(
+                    textColor = MaterialTheme.colors.onBackground,
+                    backgroundColor = MaterialTheme.colors.background,
+                ),
             )
             IconButton(onClick = viewModel::sendMessage) {
                 Icon(

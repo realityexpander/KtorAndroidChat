@@ -53,7 +53,7 @@ class ChatViewModel @Inject constructor(
 //                                )
 //                            }.launchIn(viewModelScope)
 
-                        // Same as above.  The `onEach` is a `collect` block.
+                        // Same as above.  The `onEach` is a flow, so needs a `collect` terminator.
                         viewModelScope.launch {
                             chatSocketService.observeMessages()  // setup the flow for observing messages
                                 .onEach { message ->

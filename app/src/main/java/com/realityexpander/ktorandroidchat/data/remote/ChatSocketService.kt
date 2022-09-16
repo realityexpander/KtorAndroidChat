@@ -17,7 +17,9 @@ interface ChatSocketService {
     suspend fun closeSession()
 
     companion object {
-        const val BASE_URL = "ws://192.168.0.186:8082"
+        //const val BASE_URL = "ws://192.168.0.186:8082" // local
+        const val BASE_URL = "ws://82.180.173.232:8082" // remote
+
     }
 
     sealed class Endpoints(val url: String) {
