@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         if (savedInstanceState!=null) {
-            println("savedInstanceState[\"username\"] = ${savedInstanceState["username"]}")
+            println("savedInstanceState[\"username\"] = ${savedInstanceState.getString("username")}")
         }
 
         setContent {
