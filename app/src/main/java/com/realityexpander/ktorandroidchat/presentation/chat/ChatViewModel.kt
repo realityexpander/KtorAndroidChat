@@ -33,7 +33,7 @@ class ChatViewModel @Inject constructor(
         getAllMessages()
 
         // the `savedStateHandle` contains the arguments from the `navArguments`
-        println("Connecting to chat: id=${savedStateHandle.get<String>("id")}") // not used, for demo only.
+        println("Connecting to chat: id=${savedStateHandle.get<Int>("id")}") // not used, for demo only.
 
         savedStateHandle.get<String>("username")?.let { username ->
             viewModelScope.launch {
