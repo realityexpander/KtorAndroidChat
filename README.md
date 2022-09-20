@@ -32,6 +32,7 @@ App features:
 * Dependency injection with Dagger-Hilt
 * Deployable Ktor server accessable from anywhere
 * Custom automatic Deployment to Ubuntu servers via Gradle task (deploy)
+* Koin dependency injection on server
 
 Note : this repository only contains the android app part, Ktor API is in this repo:  https://github.com/realityexpander/Server.ktor-chat
 
