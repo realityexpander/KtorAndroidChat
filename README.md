@@ -26,7 +26,7 @@ App features:
 * Navigation Component
 * Custom REST API built with Ktor
 * Custom Websockets using Ktor Client for real-time communication
-* Responds to custom HTTP & HTTPS endpoints with JSON
+* Responds to custom HTTP & WebSocket endpoints with JSON
 * Allows users to reconnect if accidentally disconnected
 * Efficiently handles network errors
 * Dependency injection with Dagger-Hilt
