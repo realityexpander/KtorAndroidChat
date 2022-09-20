@@ -31,7 +31,7 @@ App features:
 * Efficiently handles network errors
 * Dependency injection with Dagger-Hilt
 * Deployable Ktor server accessable from anywhere
-* Deployable to Ubuntu servers
+* Custom automatic Deployment to Ubuntu servers via Gradle task (deploy)
 
 Note : this repository only contains the android app part, Ktor API is in this repo:  https://github.com/realityexpander/Server.ktor-chat
 
